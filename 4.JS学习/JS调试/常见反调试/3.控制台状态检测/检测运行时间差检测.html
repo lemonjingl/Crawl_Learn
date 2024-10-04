@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运行时间差检测</title>
+</head>
+<body>
+运行时间差检测
+<script>
+  org=Date.now()
+  function a(){
+    debugger;
+    current_time=Date.now();
+    if ((current_time-org)>2000){
+      console.log('检测超时！')
+    }else{
+      console.log('检测正常')
+    }
+  }
+  a()
+</script>
+
+</body>
+</html>

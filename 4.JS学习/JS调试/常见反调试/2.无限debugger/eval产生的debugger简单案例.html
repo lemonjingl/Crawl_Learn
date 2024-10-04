@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eval产生动态生成的无限debugger</title>
+</head>
+<body>
+<h1>My Webpage</h1>
+<script>
+<!--    HOOK掉下面的eval产生的debugger-->
+    // const originalEval=eval;
+    // function hookedEval(code){
+    //     if (code.includes('debugger')){
+    //         console.log('Hook eval....');
+    //         code=code.replace('debugger','');
+    //     }
+    //     return originalEval(code);
+    // }
+    // eval=hookedEval;
+
+
+
+<!--    用于生成指定范围内的随机整数-->
+  function getRandomInt(min,max){
+    return Math.floor(Math.random()*(max-min+1))+min;
+  }
+
+  //该函数生成一个随机长度的字符串，并在其中使用小写字母，然后返回该字符串。
+  function randomFunctionName(){
+    const randomLength=getRandomInt(5,15);
+    const characters='abcdefghijklmnopqrstuvwxyz';
+    let result='';
+
+    for (let i=0;i<randomLength;i++){
+      result+=characters.charAt(getRandomInt(0,characters.length-2));
+    }
+    return result;
+  }
+  //该函数会调用 randomFunctionName() 生成一个随机函数名，并创建一个包含调用 console.log() 和 debugger 语句的代码块。然后使用 eval() 执行这段代码
+  function executeRandomDebugger(){
+    const functionName=randomFunctionName();
+    const code=`function ${functionName}(){
+      console.log('executing ${functionName}');
+      debugger;
+    }
+    ${functionName}();
+    `;
+    eval(code)
+  }
+  //使用 setInterval() 每隔 1000 毫秒（即每秒）调用一次
+  setInterval(executeRandomDebugger,1000);
+
+
+</script>
+
+</body>
+</html>

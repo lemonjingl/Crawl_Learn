@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习</title>
+</head>
+<body>
+<script>
+    // 3.动态修改HTML（动态修改网页代码）
+    window.onload=function (){
+    document.getElementById("3").onclick=function (){
+      var text=document.getElementById("1").value
+      var pw=document.getElementById("2").value
+      document.getElementById('4').innerHTML="<span>"+'账号为：'+text+'密码为：'+pw+"</span>"
+    }
+  }
+
+</script>
+
+账号：<input type="text" id="1" ><br>
+密码：<input type="password" id="2" ><br>
+<button id="3">登录</button><br>
+<div id="4"></div>
+
+</body>
+</html>

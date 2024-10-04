@@ -1,0 +1,20 @@
+import requests
+
+url='https://fanyi.baidu.com/v2transapi?from=en&to=zh'
+headers={'User-Agent':'Mozilla/5.优质采.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.54'
+         ,'Acs-Token': '1675325126450_1675364926050_ButrkLMjcdYnr4smm4du3AABahkdU8MRUinBzCZNhr/N7zM3YJjY/M5oh0euxTWkFWoIcl77KdgDRTPDrXTeg+saqc3p1K8yddRWdIoaMJhnOhhbUXV9LBa9xWiclNMj3y0ijCJ2PJz63hRGB+ieJ3pXkcQNPNkQ0t2TpQPYpRF21g/4pAaECahsXkSRIrex5I4+2WQeyDWEC7Mfr7RCXcwWzx8/SMNueIorbX25PW3GWh0LfmHx6lohg9LDGvQ8qjrHTUSGRpQEMC9ThIHYrZPW4bNwrol46ASFvMIDiMQ=',
+    'Cookie': 'BIDUPSID=CE8C6E709313A41A0518DB276E42F71D; PSTM=1674197245; BAIDUID=CE8C6E709313A41A270A5DDD24BE9C6E:FG=1; BAIDUID_BFESS=CE8C6E709313A41A270A5DDD24BE9C6E:FG=1; ZFY=G:AM7nBhmbzW0B9KYPDV7cjzvjf7NEhyNLM5qibMJLY4:C; BAIDU_WISE_UID=wapp_1674389608767_772; __bid_n=185d965dcff851f73f4207; APPGUIDE_10_0_2=1; REALTIME_TRANS_SWITCH=1; FANYI_WORD_SWITCH=1; HISTORY_SWITCH=1; SOUND_SPD_SWITCH=1; SOUND_PREFER_SWITCH=1; FPTOKEN=QiyTap6rV+odjdgolpiVsZGvsi7iXsbmoZR2JrhcCVRGrLSwD+VlC37y+iX6yxWAKIMcxBcjp3scLQgoy4fl/o7lwI8K/Spz4Y0QWZTkPalH+TFTRSYkUNpUdy0bv0R07m8yK6zDbNSVnLa4TKXGZCcNk9L5mS26ISDQCD0mLZ6HsiuDjxSBuX1s9mABGWTKfKfImBRg/XeK+qB718f0Np2EIfs1f0nKukXlhG99J7yAzZOlj0JbvNk8rlBxdvezY3LEFjyc9u7IVe5jpNk0qXTx5C72ctGrIvXoEOBBNZ54w22RK3e/I0v1v1Sc2xJVd4uP4E9t/4R1W8vxiHVbpv4r708kPJOtDxXnQTQPil6SaHPElgHD965fxn1Ec9kGPv0/scrJRxQdRtqlFArnT/VbVqbKmZOy5KGmsBlwNwHE77tBsTuJwzBjNWYz4ZpE|kzmEIZ406ZYUp6Dzb11j7ahaockl5Rt2HOAXTbCEBMw=|10|051425c5d151765e94c3a7e21edffe36; Hm_lvt_64ecd82404c51e03dc91cb9e8c025574=1675332406,1675337780,1675338193,1675364803; Hm_lpvt_64ecd82404c51e03dc91cb9e8c025574=1675364803; ab_sr=1.0.1_YzhhOGYzOGM4MWZlNDViM2JjNzhiYmRlY2ZiNjU0ZGNiY2Y2MDUzNjdiY2Y3ZDI4YjIwN2ZmYTg3ZjA0NDQzYjliNTNjYjkyNGIwODc3NjY4OWRmMjZjNjJjYTUyZGEzMTkzYTljZDU0OTFmM2M1NGJiNTAyN2MzYmU2NDc3ZDc0NTc0NTNlNjVhNDE0ZDFhNDExNjM0MGYxM2UxZGNmMA==',}
+
+data={'from': 'zh',
+'to': 'en',
+'query': '篮球',
+'transtype': 'realtime',
+'simple_means_flag': '3',
+'sign': '85253.372276',
+'token': '098ad2c55386f935d83992d284f417b9',
+'domain': 'common'}
+
+response=requests.post(url=url,data=data,headers=headers)
+print(response.json()['trans_result']['data'][0])
+print(response.json()['trans_result']['data'][0]['src'])
+print(response.json()['trans_result']['data'][0]['dst'])

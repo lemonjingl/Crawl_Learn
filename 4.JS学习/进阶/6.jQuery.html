@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>了解jQuery</title>
+</head>
+<body>
+<script src="./jquery-1.9.1/jquery.min.js"></script>
+<script>
+  $(function (){
+    $("#b1").click(function (){
+      var content=$("#t1").val()
+      content='这里进行加密'+content
+      $("#d1").append('<span>'+content+'</span>')
+    })
+  })
+</script>
+
+<input id="t1">
+<button id="b1">了解jQuery</button>
+<div id="d1"></div>
+</body>
+</html>

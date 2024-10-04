@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>检测浏览器内外高度差</title>
+</head>
+<body>
+检测浏览器内外高度差
+<script>
+  function detectDevToolsOpened(){
+    const browerOuterHeight=window.outerHeight;
+    const browerInnerHeight=window.innerHeight;
+    const browerOuterWidth=window.outerWidth;
+    const browerInnerWidth=window.innerWidth;
+
+    const heightThreshold=150;
+    const widthThreshold=150;
+
+    if (browerOuterHeight-browerInnerHeight>heightThreshold || browerOuterWidth-browerInnerWidth>widthThreshold){
+      console.log('检测到打开开发者工具')
+      // 反调试措施，例如关闭页面或显示警告信息
+      window.location.href='https://www.baidu.com/'
+    }
+  }
+
+  setInterval(detectDevToolsOpened,1000)
+</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>格式化检测</title>
+</head>
+<body>
+<h1>格式化检测--正则表达式</h1>
+格式化检测--正则表达式
+<script>
+  function add1(a,b){
+    return a+b;
+  }
+
+  const formattedCodel=add1.toString()
+  // 没有格式化的代码
+  const unformattedCodel=function add2(a,b){return a+b;}.toString()
+
+  // 用正则表达式检测格式化的代码
+  const regex=new RegExp('\\n');
+  const isFormatted1=regex.test(formattedCodel);
+  const isFormatted2=regex.test(unformattedCodel);
+
+  if (isFormatted1){
+    console.log('add1检测到格式化');
+  }else{
+    console.log('add1未检测到格式化');
+  }
+
+  if (isFormatted2){
+    console.log('add2检测到格式化');
+  }else{
+    console.log('add2未检测到格式化')
+  }
+
+</script>
+
+</body>
+</html>

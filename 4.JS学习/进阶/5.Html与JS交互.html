@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+</head>
+<body>
+<p>js简单</p>
+<button id="2" onclick="btn()">请确定</button><br>
+<!--<button id="b1" >请点击</button><br>-->
+<button id="b2">请点击2</button><br>
+
+<input id="t1">
+<button id="b1">确定</button>
+<div id="d1"></div>
+<!--// 1.在HTML中引入js-->
+<script>
+    function btn(){
+        alert('是否是拉拉')
+    }
+
+    // window.onload=function(){
+    //     document.getElementById('b1').onclick=function (){
+    //         alert('通过页面加载绑定的')
+    //     }
+    // }
+
+    //2.绑定事件（按钮绑定、onclick、添加事件绑定）三种方法
+    document.getElementById('b2').addEventListener('click',function (){
+            alert('通过事件监听绑定JS')
+        })
+
+
+    //3.动态修改HTML（动态修改网页代码）
+    window.onload=function(){
+        data1=document.getElementById('b1').onclick=function (){
+            var t1=document.getElementById('t1').value
+            t1='进行加密了..'+t1
+            document.getElementById('d1').innerHTML="<span>" + t1 + "</span>"
+            console.log(t1)
+        }
+
+    }
+</script>
+
+</body>
+</html>

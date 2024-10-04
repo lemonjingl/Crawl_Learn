@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询天气预报</title>
+</head>
+<body>
+<script src="../static/jquery.js"></script>
+<!--<script src="../static/axios.min.js"></script>-->
+<h1>{{city}}的温度是{{temp}}度，天气状况：{{desc}}</h1>
+<script>
+    let date=new Date()//获取当前实际
+    console.log(date.toString());
+    date.setTime(date.getTime()+100*1000)//单位为毫秒，设置几秒后删除cookie,这里为1000秒
+    //使用方法打开浏览器页面，查看cookie值，最后把下面设置cookie和时间的（下面这行）注释掉，静等两分钟看浏览器即可。
+    document.cookie=`token=abc;expires=${date.toString()}`
+
+
+    $(function () {
+        $('#b1').click(function (){
+            var query= $('#t1').val()
+            $.ajax({
+                // url:`/get_data?city=${query}`,
+                url:'/post_data',
+                method:'post',
+                data:JSON.stringify({   //json.dumps
+                    loc:query
+                }),
+                contentType:'Application/json',
+                success:function(sender_str){
+                    weather_data=JSON.parse(sender_str)//相当于python中的 json.loads
+                    city=weather_data['data'][0]
+                    temp=weather_data['data'][1]
+                    desc=weather_data['data'][2]
+                    display_h1=`${city}的温度是${temp}度，天气状况：${desc}`
+                    $('h1').text(display_h1)
+                }
+            })
+        })
+    } )
+</script>
+
+
+
+<!--axios-->
+
+<!--<script>-->
+<!--    axios.interceptors.request.use(function (config){-->
+<!--        console.log('拦截发送数据',config)-->
+<!--        return config-->
+<!--    })-->
+<!--    -->
+<!--    axios.interceptors.response.use(function (config){-->
+<!--        console.log('拦截接收的数据',config)-->
+<!--        return config-->
+<!--    })-->
+<!--    -->
+<!--    -->
+<!--    window.onload=function (){-->
+<!--        document.getElementById('t1').click=function (){-->
+<!--            axios.get('/axios').then(function (res){-->
+<!--                console.log(res.data)-->
+<!--            })-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+<input type="text" name="city" id="t1"><br><br>
+<button id="b1">查询天气预报</button>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function产生的无限debugger</title>
+</head>
+<body>
+<h1>My Webpage</h1>
+<script>
+<!-- Hook 掉 Function.constructor -->
+// _F=Function.prototype.constructor
+// Function.prototype.constructor=function(a){
+//   if (a.indexOf('debugger')==-1){
+//     return _F(a)
+//   };
+//   return function(){}
+// }
+// _F.toString=Function.prototype.constructor.toString
+
+
+  const devtools={
+    isOpen:false
+  };
+  const threshold=160;//160毫秒
+
+  function checkDevtools(){
+    const start=performance.now();
+    Function.constructor('debugger')()
+    // xxx=function (){}.constructor('debugger')()
+    const end=performance.now();
+
+    if (end-start > threshold){
+      if (!devtools.isOpen){
+        devtools.isOpen=true;
+        window.close();//关闭当前页面
+      }
+    }else{
+      devtools.isOpen=false;
+    }
+
+  }
+  setInterval(checkDevtools,1000)
+</script>
+
+</body>
+</html>

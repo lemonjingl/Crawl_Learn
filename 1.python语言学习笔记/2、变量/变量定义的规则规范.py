@@ -1,0 +1,2 @@
+name='lzz'
+print(name)

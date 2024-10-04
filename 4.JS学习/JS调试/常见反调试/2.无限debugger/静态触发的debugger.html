@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>静态触发的debugger</title>
+</head>
+<body>
+静态触发的debugger
+<script>
+    // function triggerDebugger(){
+    //     setInterval(function (){
+    //         debugger;
+    //     },1000)
+    // }
+    // triggerDebugger();
+    //
+    function triggerDebugger(){
+        setInterval(function (){
+            var code="de";
+            code+="bu";
+            code+="gger";
+            eval(code);// eval("debugger")
+            triggerDebugger();
+        },1000);
+    }
+
+    triggerDebugger();
+</script>
+
+</body>
+</html>
